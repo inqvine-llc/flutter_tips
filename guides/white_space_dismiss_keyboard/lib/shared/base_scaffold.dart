@@ -12,12 +12,23 @@ class BaseScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: GestureDetector(
-        //* Will dismiss the keyboard if white space is tapped on the screen.
-        onTap: enableAutoDismissKeyboard ? () => FocusScope.of(context).unfocus() : () {},
-        child: child,
+    //! Important - GestureDetector must be above the scaffold
+    return GestureDetector(
+      onTap: () => onWhiteSpaceTapped(context),
+      child: Scaffold(
+        body: GestureDetector(
+          //* Will dismiss the keyboard if white space is tapped on the screen.
+          onTap: () => onWhiteSpaceTapped(context),
+          child: child,
+        ),
       ),
     );
+  }
+
+  void onWhiteSpaceTapped(BuildContext context) {
+    final FocusScopeNode scope = FocusScope.of(context);
+    if (scope.hasFocus && enableAutoDismissKeyboard) {
+      scope.unfocus();
+    }
   }
 }

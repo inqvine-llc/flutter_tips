@@ -13,11 +13,18 @@ class HomeView extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-            TextField(
+          children: <Widget>[
+            const TextField(
+              keyboardType: TextInputType.number,
+              textInputAction: TextInputAction.next,
               decoration: InputDecoration(
                 hintText: 'No way to dismiss',
               ),
+            ),
+            const SizedBox(height: 20.0),
+            MaterialButton(
+              onPressed: () {},
+              child: const Text('Will not dismiss'),
             ),
           ],
         ),
