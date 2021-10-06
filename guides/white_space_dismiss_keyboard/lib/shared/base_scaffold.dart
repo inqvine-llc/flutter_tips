@@ -14,13 +14,10 @@ class BaseScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     //! Important - GestureDetector must be above the scaffold
     return GestureDetector(
+      //* Will dismiss the keyboard if white space is tapped on the screen.
       onTap: () => onWhiteSpaceTapped(context),
       child: Scaffold(
-        body: GestureDetector(
-          //* Will dismiss the keyboard if white space is tapped on the screen.
-          onTap: () => onWhiteSpaceTapped(context),
-          child: child,
-        ),
+        body: child,
       ),
     );
   }
